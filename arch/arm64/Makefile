@@ -80,6 +80,7 @@ dtbs: scripts
 	$(Q)$(MAKE) $(build)=$(boot)/dts dtbs
 ifeq ($(CONFIG_MACH_LGE),y)
 	$(Q)$(MAKE) $(build)=$(boot)/dts/lge dtbs
+	$(Q)$(MAKE) $(build)=$(boot)/dts/talkman dtbs
 else
 	$(Q)$(MAKE) $(build)=$(boot)/dts/qcom dtbs
 endif
