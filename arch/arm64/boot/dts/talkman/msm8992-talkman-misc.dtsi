@@ -15,7 +15,8 @@
 	gpio_keys {
 		compatible = "gpio-keys";
 		input-name = "gpio-keys";
-
+		autorepeat;
+		
 		vol_up {
 			label = "volume_up";
 			gpios = <&pm8994_gpios 3 0x1>;
@@ -47,18 +48,34 @@
 
 &pmi8994_haptics {
 	status = "okay";
-	qcom,actuator-type = "lra";
-	qcom,vmax-mv = <1800>;
-	qcom,vmax-mv-ind = <2500>;
-	qcom,ilim-ma = <400>;
-	qcom,wave-play-rate-us = <4347>;
-	qcom,correct-lra-drive-freq;
-	qcom,en-brake;
-	qcom,brake-pattern = [03 03 03 03];
-	qcom,wave-shape = "sine";
 };
+
 //whatfuck is this, does it work?
 &i2c_5 {
+	magnetometer@c {
+		compatible = "ak,ak8975";
+		reg = <0xc>;
+		interrupt-parent = <&msm_gpio>;
+		interrupts = <26 0x1>;
+		vdd-supply = <&pm8994_l18>;
+		vid-supply = <&pm8994_lvs2>;
+	};
+
+
+	mpu6050@68 { /* Gyroscope and accelerometer sensor combo */
+		compatible = "invn,mpu6050";
+		reg = <0x68>;
+		pinctrl-names = "mpu_default","mpu_sleep";
+		pinctrl-0 = <&mpu6050_default>;
+		pinctrl-1 = <&mpu6050_sleep>;
+		interrupt-parent = <&msm_gpio>;
+		interrupts = <64 0x1>;
+		vdd-supply = <&pm8994_lvs2>;
+		vlogic-supply = <&pm8994_lvs2>;
+		invn,gpio-int = <&msm_gpio 64 0x1>;
+		invn,place = "Portrait Down Back Side";
+	};
+
 	fusb301@21 {
 		status = "ok";
 		compatible = "fc,fusb301";

@@ -387,13 +387,34 @@
 };
 
 &pm8994_gpios {
-	gpio@c200 { /* GPIO 3 VOL_UP_N */
-		qcom,mode = <0>;		/* Digital input */
+	gpio@c000 { /* GPIO 1 */
+	};
+
+	gpio@c100 { /* GPIO 2 */
+	};
+
+	gpio@c200 { /* GPIO 3 */
+		qcom,mode = <0>;		/* Digital in */
 		qcom,pull = <0>;		/* PULL up 30uA */
-		qcom,vin-sel = <2>;		/* Voltage value 1.8v */
+		qcom,vin-sel = <2>;		/* Logical 1 voltage value 1.8v */
 		qcom,src-sel = <0>;		/* Constant */
-		qcom,master-en = <1>;		/* Enable */
-		status = "ok";
+		status = "okay";
+	};
+
+	gpio@c300 { /* GPIO 4 */
+		qcom,mode = <0>;		/* Digital in */
+		qcom,pull = <0>;		/* PULL up 30uA */
+		qcom,vin-sel = <2>;		/* Logical 1 voltage value 1.8v */
+		qcom,src-sel = <0>;		/* Constant */
+		status = "okay";
+	};
+
+	gpio@c400 { /* GPIO 5 */
+		qcom,mode = <0>;		/* Digital in */
+		qcom,pull = <0>;		/* PULL up 30uA */
+		qcom,vin-sel = <2>;		/* Logical 1 voltage value 1.8v */
+		qcom,src-sel = <0>;		/* Constant */
+		status = "okay";
 	};
 
 	gpio@c500 { /* GPIO 6 STAT_SMB1358 */

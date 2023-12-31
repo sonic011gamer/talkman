@@ -17,7 +17,7 @@
  *---------------------------------------------------------------------------*/
 &mdss_mdp {
 	dsi_duke_wqhd_dsi1_cmd: qcom,mdss_dsi_duke_wqhd_dsi1_cmd {
-		qcom,mdss-dsi-panel-name = "Duke 1440p Dual 1 cmd mode dsi panel )";
+		qcom,mdss-dsi-panel-name = "Duke 1440p DSI1 cmd mode panel";
 		qcom,mdss-dsi-panel-controller = <&mdss_dsi1>;
 		qcom,mdss-dsi-panel-type = "dsi_cmd_mode";
 		qcom,mdss-dsi-panel-destination = "display_2";
