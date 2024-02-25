@@ -46,8 +46,19 @@
 	};
 };
 
-&pmi8994_haptics {
+ &pmi8994_haptics {
 	status = "okay";
+	qcom,actuator-type = "erm";
+	qcom,vmax-mv = <2300>;
+	qcom,ilim-ma = <800>;
+	qcom,sc-deb-cycles = <8>;
+	qcom,int-pwm-freq-khz = <505>;
+	qcom,wave-shape = "square";
+	qcom,lra-auto-res-mode = "none";
+	qcom,lra-high-z = "none";
+	qcom,lra-res-cal-period = <4>;
+	qcom,use-sc-irq;
+	qcom,brake-pattern = [ 00 11 11 11 ];
 };
 
 //whatfuck is this, does it work?

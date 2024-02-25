@@ -22,6 +22,10 @@
 		qca,bt-vdd-xtal-voltage-level = <1800000 1800000>;
 	};
 
+	qcom,cnss {
+		vdd-wlan-sp2t-supply = <&pm8994_l16>;
+	};
+	
 	i2c@f9965000 {
 		status = "okay";
 		qcom,disable-dma;

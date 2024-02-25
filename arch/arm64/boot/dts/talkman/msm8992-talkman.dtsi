@@ -50,20 +50,6 @@
 
 	};
 
-	qcom,cnss {
-		wlan-bootstrap-gpio = <&msm_gpio 1 0>;
-	};
-
-	sound {
-		/delete-property/ pinctrl-0;
-		/delete-property/ pinctrl-1;
-		/delete-property/ pinctrl-2;
-		/delete-property/ pinctrl-3;
-		pinctrl-0 = <&sec_aux_pcm_sleep>, <&sec_aux_pcm_din_sleep>;
-		pinctrl-1 = <&sec_aux_pcm_active>, <&sec_aux_pcm_din_active>;
-		pinctrl-2 = <&sec_aux_pcm_sleep>, <&sec_aux_pcm_din_sleep>;
-		pinctrl-3 = <&sec_aux_pcm_active>, <&sec_aux_pcm_din_active>;
-	};
 };
 
 &dfps_data_mem {
