@@ -279,6 +279,18 @@
 			label = "secure_mem";
 		};
 
+		rfsa_dsp_mem: rfsa_region@0 {
+			linux,reserve-contiguous-region;
+			reg = <0 0x6e60000 0 0x10000>;
+			label = "rfsa_dsp";
+		};
+		
+		rmtfs_mem: rmtfs_region@0 {
+			linux,reserve-contiguous-region;
+			reg = <0 0x6e70000 0 0x10000>;
+			label = "rmtfs_mem";
+		};
+
 		qsecom_mem: qsecom_region@0 {
 			linux,reserve-contiguous-region;
 			reg = <0 0 0 0x400000>;
@@ -313,6 +325,24 @@
 			reg = <0 0x03401000 0 0x2200000>;
 			label = "cont_splash_mem";
 		};
+
+		adsp_mem: adsp_region@0 {
+			linux,reserve-contiguous-region;
+			linux,reserve-region;
+			linux,remove-completely;
+			reg = <0 0xca00000 0 0x1800000>;
+			label = "adsp_mem";
+		};
+
+		venus_mem: venus_region@0 {
+			linux,reserve-contiguous-region;
+			linux,reserve-region;
+			linux,remove-completely;
+			reg = <0 0xe200000 0 0x500000>;
+			label = "venus_mem";
+		};
+
+
 
 		peripheral_mem: peripheral_region@0 {
 			linux,reserve-contiguous-region;
@@ -1817,19 +1847,20 @@
 		status = "disabled";
 	};
 
-	qcom,rmtfs_sharedmem@00000000 {
+	qcom,rmtfs_sharedmem@6e70000 {
 		compatible = "qcom,sharedmem-uio";
-		reg = <0x00000000 0x00180000>;
+		reg = <0x6e70000 0x00010000>;
 		reg-names = "rmtfs";
 		qcom,client-id = <0x00000001>;
+		linux,contiguous-region = <&rmtfs_mem>;
 	};
 
-	qcom,dsp_sharedmem@00000000 {
+	qcom,dsp_sharedmem@6e60000 {
 		compatible = "qcom,sharedmem-uio";
-		reg = <0x00000000 0x00010000>;
+		reg = <0x6e60000 0x00010000>;
 		reg-names = "rfsa_dsp";
 		qcom,client-id = <0x011013ec>;
-		linux,contiguous-region = <&secure_mem>;
+		linux,contiguous-region = <&rfsa_dsp_mem>;
 	};
 
 	qcom,mdm_sharedmem@00000000 {
@@ -1872,7 +1903,7 @@
 		qcom,pas-id = <9>;
 		qcom,proxy-timeout-ms = <100>;
 		qcom,firmware-name = "venus";
-		linux,contiguous-region = <&peripheral_mem>;
+		linux,contiguous-region = <&venus_mem>;
 	};
 
 	qcom,mss@fc880000 {
@@ -1953,7 +1984,7 @@
 		/* GPIO output to lpass */
 		qcom,gpio-force-stop = <&smp2pgpio_ssr_smp2p_2_out 0 0>;
 
-		linux,contiguous-region = <&peripheral_mem>;
+		linux,contiguous-region = <&adsp_mem>;
 	};
 
 	qcom,ipc-spinlock@fd484000 {
