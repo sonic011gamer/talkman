@@ -280,13 +280,13 @@
 		};
 
 		rfsa_dsp_mem: rfsa_region@0 {
-			linux,reserve-contiguous-region;
+			no-map;
 			reg = <0 0x6e60000 0 0x10000>;
 			label = "rfsa_dsp";
 		};
 		
 		rmtfs_mem: rmtfs_region@0 {
-			linux,reserve-contiguous-region;
+			no-map;
 			reg = <0 0x6e70000 0 0x10000>;
 			label = "rmtfs_mem";
 		};
@@ -1847,7 +1847,7 @@
 		status = "disabled";
 	};
 
-	qcom,rmtfs_sharedmem@6e70000 {
+	qcom,rmtfs_sharedmem@00000000 {
 		compatible = "qcom,sharedmem-uio";
 		reg = <0x6e70000 0x00010000>;
 		reg-names = "rmtfs";
@@ -1855,7 +1855,7 @@
 		linux,contiguous-region = <&rmtfs_mem>;
 	};
 
-	qcom,dsp_sharedmem@6e60000 {
+	qcom,dsp_sharedmem@00000000 {
 		compatible = "qcom,sharedmem-uio";
 		reg = <0x6e60000 0x00010000>;
 		reg-names = "rfsa_dsp";
@@ -1903,7 +1903,7 @@
 		qcom,pas-id = <9>;
 		qcom,proxy-timeout-ms = <100>;
 		qcom,firmware-name = "venus";
-		linux,contiguous-region = <&venus_mem>;
+		linux,contiguous-region = <&peripheral_mem>;
 	};
 
 	qcom,mss@fc880000 {
